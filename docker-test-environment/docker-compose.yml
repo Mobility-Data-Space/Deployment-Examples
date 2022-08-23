@@ -1,0 +1,89 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=connector
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=connectordb
+    networks:
+      - local
+    volumes:
+      - dataspaceconnector-data:/var/lib/postgresql/data
+    restart: always
+
+  dataspaceconnector:
+    image: ghcr.io/international-data-spaces-association/dataspace-connector:8.0.0
+    container_name: dataspaceconnector
+    ports:
+      - 8080:8080
+    environment:
+      - CONFIGURATION_PATH=/conf/config.json
+      - CAMEL_TRUSTSTORE_PATH=/conf/truststore.p12
+
+      - SERVER_SSL_ENABLED=true
+      - SERVER_SSL_KEY-ALIAS=1
+      - SERVER_SSL_KEY-STORE-PASSWORD=password
+      - SERVER_SSL_KEY-STORE=/conf/keystore.p12
+
+      - SPRING_DATASOURCE_PASSWORD=12345
+      - SPRING_DATASOURCE_PLATFORM=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/connectordb
+      - SPRING_DATASOURCE_USERNAME=connector
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
+      - SPRING_JPA_DATABASEPLATFORM=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_FLYWAY_ENABLED=true
+      - SPRING_FLYWAY_BASELINEVERSION=8.0.0
+      - SPRING_JPA_HIBERNATE_DDLAUTO=update
+
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=password
+      - SPRING_SECURITY_APP_NAME=app
+      - SPRING_SECURITY_APP_PASSWORD=password
+
+      - DAPS_URL=https://daps.test.mobility-dataspace.eu
+      - DAPS_TOKEN_URL=https://daps.test.mobility-dataspace.eu/token
+      - DAPS_KEY_URL=https://daps.test.mobility-dataspace.eu/jwks.json
+      - DAPS_INCOMING_DAT_DEFAULT_WELLKNOWN=/jwks.json
+      - DAPS_WHITELISTED_URL=https://daps.test.mobility-dataspace.eu
+
+      - CLEARING_HOUSE_URL=https://clearing.test.mobility-dataspace.eu
+
+      - REFERRED_CHECK=true
+    networks:
+      - local
+    volumes:
+      - ./conf/config.json:/conf/config.json
+      - ./conf/keystore.p12:/conf/keystore.p12
+      - ./conf/truststore.p12:/conf/truststore.p12
+    depends_on:
+      - postgres
+    restart: always
+
+  dataspaceconnectorui:
+    image: ghcr.io/mobility-data-space/dataspaceconnectorui:10.0.1-mds
+    container_name: dataspaceconnectorui
+    ports:
+      - 8083:8083
+    environment:
+      - CONNECTOR_URL=https://dataspaceconnector:8080
+      - CONNECTOR_USER=admin
+      - CONNECTOR_PASSWORD=password
+      - UI_TITLE=MDS Dataspace Connector UI
+    networks:
+      - local
+    depends_on:
+      - dataspaceconnector
+    restart: always
+
+networks:
+  local:
+    driver: bridge
+
+volumes:
+  dataspaceconnector-data: {}
+  portainer_data: {}
