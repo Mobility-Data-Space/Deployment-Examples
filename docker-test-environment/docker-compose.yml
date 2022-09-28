@@ -17,7 +17,7 @@ services:
     restart: always
 
   dataspaceconnector:
-    image: ghcr.io/international-data-spaces-association/dataspace-connector:8.0.0
+    image: ghcr.io/international-data-spaces-association/dataspace-connector:8.0.1
     container_name: dataspaceconnector
     ports:
       - 8080:8080
