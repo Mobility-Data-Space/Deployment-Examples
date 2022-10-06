@@ -36,7 +36,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=connector
       - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
       - SPRING_JPA_DATABASEPLATFORM=org.hibernate.dialect.PostgreSQLDialect
-      - SPRING_FLYWAY_ENABLED=true
+      - SPRING_FLYWAY_ENABLED=false
       - SPRING_FLYWAY_BASELINEVERSION=8.0.0
       - SPRING_JPA_HIBERNATE_DDLAUTO=update
 
@@ -65,7 +65,7 @@ services:
     restart: always
 
   dataspaceconnectorui:
-    image: ghcr.io/mobility-data-space/dataspaceconnectorui:10.0.1-mds
+    image: ghcr.io/mobility-data-space/dataspaceconnectorui:10.1.0-mds1
     container_name: dataspaceconnectorui
     ports:
       - 8083:8083
