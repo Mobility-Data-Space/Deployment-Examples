@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2022-10-17
+
+### Changed
+- Activated Flyway after DSC was fixed
+
+### Updated
+- Update to DSC v8.0.2
+
 
 ## [1.1.0] - 2022-10-06
 
