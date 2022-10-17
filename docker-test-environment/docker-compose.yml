@@ -36,8 +36,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=connector
       - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
       - SPRING_JPA_DATABASEPLATFORM=org.hibernate.dialect.PostgreSQLDialect
-      - SPRING_FLYWAY_ENABLED=false
-      - SPRING_FLYWAY_BASELINEVERSION=8.0.0
+      - SPRING_FLYWAY_ENABLED=true
       - SPRING_JPA_HIBERNATE_DDLAUTO=update
 
       - SPRING_SECURITY_USER_NAME=admin
