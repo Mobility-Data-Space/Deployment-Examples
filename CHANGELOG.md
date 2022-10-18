@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [x.x.X] - xxxx-xx-xx
+
+### Added
+- Env variables for Flyway Baseline Migration
+- Env variables for configuration force reload
+
+
 ## [1.2.0] - 2022-10-17
 
 ### Changed
