@@ -24,6 +24,7 @@ services:
     environment:
       - CONFIGURATION_PATH=/conf/config.json
       - CAMEL_TRUSTSTORE_PATH=/conf/truststore.p12
+      - CONFIGURATION_FORCE_RELOAD=false
 
       - SERVER_SSL_ENABLED=true
       - SERVER_SSL_KEY-ALIAS=1
@@ -37,6 +38,8 @@ services:
       - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
       - SPRING_JPA_DATABASEPLATFORM=org.hibernate.dialect.PostgreSQLDialect
       - SPRING_FLYWAY_ENABLED=true
+      - SPRING_FLYWAY_BASELINEVERSION=8.0.1
+      - SPRING_FLYWAY_BASELINEONMIGRATE=false
       - SPRING_JPA_HIBERNATE_DDLAUTO=update
 
       - SPRING_SECURITY_USER_NAME=admin
