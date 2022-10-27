@@ -23,6 +23,7 @@ services:
       - 8080:8080
     environment:
       - CONFIGURATION_PATH=/conf/config.json
+      - CONFIGURATION_KEYSTOREPASSWORD=password
       - CAMEL_TRUSTSTORE_PATH=/conf/truststore.p12
       - CONFIGURATION_FORCE_RELOAD=false
 
