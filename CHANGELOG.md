@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Env variables for Flyway Baseline Migration
 - Env variables for configuration force reload
+- Env variable for keystore password
 
 
 ## [1.2.0] - 2022-10-17
