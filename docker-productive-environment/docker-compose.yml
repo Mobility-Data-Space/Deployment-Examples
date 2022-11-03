@@ -67,7 +67,7 @@ services:
     restart: always
 
   dataspaceconnectorui:
-    image: ghcr.io/mobility-data-space/dataspaceconnectorui:10.1.0-mds1
+    image: ghcr.io/mobility-data-space/dataspaceconnectorui:10.2.0-mds1
     container_name: dataspaceconnectorui
     ports:
       - 8083:8083
