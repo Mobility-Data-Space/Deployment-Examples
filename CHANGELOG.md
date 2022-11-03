@@ -1,12 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [x.x.X] - xxxx-xx-xx
+## [1.3.0] - 2022-11-03
 
 ### Added
 - Env variables for Flyway Baseline Migration
 - Env variables for configuration force reload
 - Env variable for keystore password
+
+### Updated
+- Update to DSC UI v10.2.0-mds1
 
 
 ## [1.2.0] - 2022-10-17
