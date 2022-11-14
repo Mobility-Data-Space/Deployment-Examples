@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+
+## [1.3.1] - 2022-11-14
+
+### Updated
+- Update to DSC UI v10.2.1-mds1
+
+
 ## [1.3.0] - 2022-11-03
 
 ### Added
