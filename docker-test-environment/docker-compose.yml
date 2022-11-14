@@ -22,16 +22,19 @@ services:
     ports:
       - 8080:8080
     environment:
+      # Configuration files
       - CONFIGURATION_PATH=/conf/config.json
       - CONFIGURATION_KEYSTOREPASSWORD=password
       - CAMEL_TRUSTSTORE_PATH=/conf/truststore.p12
       - CONFIGURATION_FORCE_RELOAD=false
 
+      # TLS settings
       - SERVER_SSL_ENABLED=true
       - SERVER_SSL_KEY-ALIAS=1
       - SERVER_SSL_KEY-STORE-PASSWORD=password
-      - SERVER_SSL_KEY-STORE=/conf/keystore.p12
+      - SERVER_SSL_KEY-STORE=/conf/keystore_tls.p12
 
+      # Database settings
       - SPRING_DATASOURCE_PASSWORD=12345
       - SPRING_DATASOURCE_PLATFORM=postgres
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/connectordb
@@ -43,25 +46,33 @@ services:
       - SPRING_FLYWAY_BASELINEONMIGRATE=false
       - SPRING_JPA_HIBERNATE_DDLAUTO=update
 
+      # User Authentication
       - SPRING_SECURITY_USER_NAME=admin
       - SPRING_SECURITY_USER_PASSWORD=password
       - SPRING_SECURITY_APP_NAME=app
       - SPRING_SECURITY_APP_PASSWORD=password
 
+      # DAPS
       - DAPS_URL=https://daps.test.mobility-dataspace.eu
       - DAPS_TOKEN_URL=https://daps.test.mobility-dataspace.eu/token
       - DAPS_KEY_URL=https://daps.test.mobility-dataspace.eu/jwks.json
       - DAPS_INCOMING_DAT_DEFAULT_WELLKNOWN=/jwks.json
       - DAPS_WHITELISTED_URL=https://daps.test.mobility-dataspace.eu
+      - REFERRED_CHECK=true
 
+      # Clearing House
       - CLEARING_HOUSE_URL=https://clearing.test.mobility-dataspace.eu
 
-      - REFERRED_CHECK=true
+      # Debugging: DEBUG, true, true
+      - LOGGING_LEVEL_IO_DATASPACECONNECTOR=INFO
+      - MESSAGING_LOG_INCOMING=FALSE
+      - MESSAGING_LOG_OUTGOING=FALSE
     networks:
       - local
     volumes:
       - ./conf/config.json:/conf/config.json
-      - ./conf/keystore.p12:/conf/keystore.p12
+      - ./conf/keystore_ids.p12:/conf/keystore_ids.p12
+      - ./conf/keystore_tls.p12:/conf/keystore_tls.p12
       - ./conf/truststore.p12:/conf/truststore.p12
     depends_on:
       - postgres
