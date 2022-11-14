@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [x.x.x] - xxxx-xx-xx
+
+### Changed
+- Adjusted naming of key stores
+
+### Fixed
+- Changed keystore for TLS certificates avoiding SSL errors
+
 
 ## [1.3.1] - 2022-11-14
 
