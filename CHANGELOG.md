@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [x.x.x] - xxxx-xx-xx
+## [2.0.0] - 2022-11-15
 
 ### Changed
 - Adjusted naming of key stores
